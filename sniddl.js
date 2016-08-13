@@ -1,16 +1,23 @@
-const s = {
+window.s = {
   //checks custom media query
   mq: function (a,b) {
     return window.matchMedia( "("+a+": "+b+")" ).matches
+  },
+  //Allows quick file inclusion using jquery ajax.
+  include: function(c,d){
+    $.ajax({
+        url : c,
+        dataType: "text",
+        success : function (data) {
+            $(d).html(data);
+        }
+    });
   }
 }
 
 
 
 //Allows users to insert a range to slice their html element.
-
-
-
   $.fn.shorten = function(a,b) {
     b ? this.html(this.html().slice(a,b)) : this.html(this.html().slice(0,a))
     return this
